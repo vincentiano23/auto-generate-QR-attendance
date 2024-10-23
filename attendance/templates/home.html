@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+   
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <h2>Your QR Code</h2>
+            {% if qr_code %}
+                <img src="{{ qr_code.qr_code_image.url }}" alt="QR Code" class="img-fluid" style="max-width: 300px;">
+                <p>Scan this code for attendance.</p>
+            {% else %}
+                <p>No QR code available for your profile.</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

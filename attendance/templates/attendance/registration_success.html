@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5 text-center">
+    <h2>Registration Successful</h2>
+    <p>The student has been successfully registered.</p>
+    <a href="{% url 'home' %}" class="btn btn-success">Go to Student List</a>
+</div>
+{% endblock %}

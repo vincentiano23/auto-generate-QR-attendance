@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <h2 class="text-center mb-4">Login</h2>
+
+            <form method="post">
+                {% csrf_token %}
+                
+                <!-- Display form errors, if any -->
+                {% if form.errors %}
+                <div class="alert alert-danger" role="alert">
+                    <strong>There were errors with your submission:</strong>
+                    {{ form.non_field_errors }}
+                </div>
+                {% endif %}
+                
+                <!-- Username field -->
+                <div class="mb-3">
+                    <label for="id_username" class="form-label">Username</label>
+                    <input type="text" class="form-control" id="id_username" name="username" placeholder="Enter your username" required>
+                </div>
+
+                <!-- Password field -->
+                <div class="mb-3">
+                    <label for="id_password" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="id_password" name="password" placeholder="Enter your password" required>
+                </div>
+
+                <!-- Submit button -->
+                <button type="submit" class="btn btn-primary w-100">Login</button>
+            </form>
+
+           
+        </div>
+    </div>
+</div>
+{% endblock %}

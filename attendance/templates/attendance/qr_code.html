@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5 text-center">
+    <h2 class="mb-4">Your Registration was Successful!</h2>
+    
+    <!-- Display success message -->
+    {% if messages %}
+        <div class="alert alert-success">
+            {% for message in messages %}
+                {{ message }}
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <!-- Display QR Code if it exists -->
+    {% if qr_code.qr_code_image %}
+        <div class="card" style="width: 18rem; margin: auto;">
+            <img src="{{ qr_code.qr_code_image.url }}" class="card-img-top" alt="QR Code">
+            <div class="card-body">
+                <h5 class="card-title">{{ qr_code.student.registration_number }}</h5>
+                <p class="card-text">Scan this QR code to mark your attendance.</p>
+            </div>
+        </div>
+    {% else %}
+        <div class="alert alert-warning" role="alert">
+            No QR code available for this student.
+        </div>
+    {% endif %}
+
+    <div class="mt-4">
+        <a href="{% url 'home' %}" class="btn btn-primary">Back to Home</a>
+    </div>
+</div>
+{% endblock %}

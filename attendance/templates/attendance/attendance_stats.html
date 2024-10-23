@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <h2 class="text-center">Student Attendance Statistics</h2>
+
+    <ul class="list-group">
+        {% for data in attendance_data %}
+            <li class="list-group-item">{{ data.name }}: {{ data.percentage }}%</li>
+        {% endfor %}
+    </ul>
+
+   
+    <div class="mt-4">
+        <canvas id="attendanceChart"></canvas>
+    </div>
+</div>
+
+<!-- Include Chart.js via CDN -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+    const ctx = document.getElementById('attendanceChart').getContext('2d');
+    const attendanceChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: [
+                {% for data in attendance_data %}
+                    "{{ data.name }}",
+                {% endfor %}
+            ],
+            datasets: [{
+                label: 'Attendance Percentage',
+                data: [
+                    {% for data in attendance_data %}
+                        {{ data.percentage }},
+                    {% endfor %}
+                ],
+                backgroundColor: 'rgba(54, 162, 235, 0.6)',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    max: 100
+                }
+            }
+        }
+    });
+</script>
+{% endblock %}
+
+
